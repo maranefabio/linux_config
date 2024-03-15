@@ -1,27 +1,41 @@
+local ascii = {
+[[                                   	            ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄                                                   ]],
+[[                                                █████████████████                                                   ]],
+[[                                          ██████                 ███████                                            ]],
+[[                                       ▄▄▄▀▀▀▀▀▀                 ▀▀▀▀▀▀▀▄▄▄                                         ]],
+[[                                       ███                              ███                                         ]],
+[[                                    ███                                    ███                                      ]],
+[[                                    ███                                    ███                                      ]],
+[[                                    ███   ███   ███                        ███                                      ]],
+[[                                 ▄▄▄▀▀▀   ███   ███          ▄▄▄▄▄▄▄       ███                                      ]],
+[[                                 ███      ███   ███          ███████          ███                                   ]],
+[[                                 ███                      ███       ███       ███                                   ]],
+[[                                 ███                      ▀▀▀       ███       ███                                   ]],
+[[                                 ███    ▒▒▒   ▒▒▒   ▒▒▒             ███       ███                                   ]],
+[[                                 ███    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒          ▄▄▄▀▀▀       ▀▀▀▄▄▄                                ]],
+[[                                 ███    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒          ███             ███                                ]],
+[[                                 ███    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒                       ███                                ]],
+[[                                    ███    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒                       ███                                ]],
+[[                                    ███    ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒                    ███                                   ]],
+[[                                    ███    ▒▒▒   ▒▒▒   ▒▒▒                    ███                                   ]],
+[[                                       ███                            ████████                                      ]],
+[[                                       ▀▀▀▄▄▄▄▄▄▄▄▄            ▄▄▄▄▄▄▄▀▀▀▀▀▀▀▀                                      ]],
+[[                                          █████████            ███████                                              ]],
+[[                                                   ████████████                                                     ]],
+[[                                                   ▀▀▀▀▀▀▀▀▀▀▀▀                                                     ]],
+}
+
+
+
+
+
 return {
   "echasnovski/mini.starter",
   version = false,
   event = "VimEnter",
   opts = function()
-    local logo = table.concat({
-
-    [[                                    ██████                                    ]],
-    [[                                ████▒▒▒▒▒▒████                                ]],
-    [[                              ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                              ]],
-    [[                            ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                            ]],
-    [[                          ██▒▒▒▒▒▒▒▒    ▒▒▒▒▒▒▒▒                              ]],
-    [[                          ██▒▒▒▒▒▒  ▒▒▓▓▒▒▒▒▒▒  ▓▓▓▓                          ]],
-    [[                          ██▒▒▒▒▒▒  ▒▒▓▓▒▒▒▒▒▒  ▒▒▓▓                          ]],
-    [[                        ██▒▒▒▒▒▒▒▒▒▒    ▒▒▒▒▒▒▒▒    ██                        ]],
-    [[                        ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                        ]],
-    [[                        ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                        ]],
-    [[                        ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                        ]],
-    [[                        ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                        ]],
-    [[                        ██▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒██                        ]],
-    [[                        ████  ██▒▒██  ██▒▒▒▒██  ██▒▒██                        ]],
-    [[                        ██      ██      ████      ████                        ]],
-    }, "\n")
-    local pad = string.rep(" ", 22)
+    local logo = table.concat(ascii, "\n")
+    local pad = string.rep(" ", 51)
     local new_section = function(name, action, section)
       return { name = name, action = action, section = pad .. section }
     end
@@ -31,10 +45,11 @@ return {
       evaluate_single = true,
       header = logo,
       items = {
-        new_section("Find file",       "Telescope find_files",                                   "Telescope"),
-        new_section("Grep text",       "Telescope grep_string",                                    "Telescope"),
-        new_section("Lazy",            "Lazy",                                                   "Config"),
-        new_section("Quit",            "qa",                                                     "Built-in"),
+        new_section("File explorer",      "Ex",                                               "Built-in" ), 
+        new_section("Find file",          "Telescope find_files",                             "Telescope"),
+        new_section("Grep text",          "Telescope grep_string",                            "Telescope"),
+        new_section("Lazy",               "Lazy",                                                "Config"),
+        new_section("Quit",               "qa",                                                "Built-in"),
       },
       content_hooks = {
         starter.gen_hook.adding_bullet(pad .. "░ ", false),
@@ -62,7 +77,7 @@ return {
       callback = function()
         local stats = require("lazy").stats()
         local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-        local pad_footer = string.rep(" ", 18)
+        local pad_footer = string.rep(" ", 37)
         starter.config.footer = pad_footer .. "⚡ Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
         pcall(starter.refresh)
       end,

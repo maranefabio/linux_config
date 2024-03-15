@@ -1,6 +1,6 @@
 -- Colorscheme
 vim.o.background = "dark"
-vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[colorscheme ayu]])
 
 -- Indentation
 vim.opt.tabstop = 2
@@ -16,13 +16,28 @@ require("bufferline").setup{}
 require('mason-lspconfig').setup({
   ensure_installed = {
     'lua_ls',
-    'pyright',
+    'ruff_lsp',
+    'pylsp',
     'rust_analyzer',
     'clangd',
     'jdtls',
     'bashls'
   }
 })
+
+
+require('lspconfig').pylsp.setup{
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          ignore = {'E501', 'E265', 'E605'},
+          maxLineLength = 100
+        }
+      }
+    }
+  }
+}
 
 -- LuaLine
 require('lualine').setup({
@@ -47,4 +62,3 @@ wk.register({
     t = { "<cmd>Neotree toggle<cr>", "Toggle Neotree Window" }
   },
 })
-

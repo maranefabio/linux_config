@@ -15,13 +15,12 @@ vim.keymap.set('n', '<leader>fg', function()
   builtin.grep_string({search = vim.fn.input('Grep >> ')})
 end)
 
-
 -- Neotree
 vim.keymap.set('n', '<leader>et', '<Cmd>Neotree toggle<CR>')
 
 -- Buffer
-vim.keymap.set('n', ']]', vim.cmd.bnext)
-vim.keymap.set('n', '[[', vim.cmd.bprevious)
+vim.keymap.set('n', ')', vim.cmd.bnext)
+vim.keymap.set('n', '(', vim.cmd.bprevious)
 
 -- LSP
 local cmp = require('cmp')
@@ -37,3 +36,13 @@ cmp.setup({
     }),
   })
 })
+
+local cmp_action = require('lsp-zero').cmp_action()
+
+cmp.setup({
+  mapping = {
+    ['<Tab>'] = cmp_action.tab_complete(),
+    ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
+  }
+})
+
