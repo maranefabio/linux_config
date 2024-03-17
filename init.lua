@@ -6,5 +6,5 @@ require('core.keymaps')
 require('core.config')
 
 vim.wo.relativenumber = true
-
+vim.cmd('Ex')
 
