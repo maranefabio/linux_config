@@ -1,16 +1,12 @@
 -- Colorscheme
 vim.o.background = "dark"
-vim.cmd([[colorscheme ayu]])
+vim.cmd([[colorscheme carbonfox]])
 
 -- Indentation
 vim.opt.tabstop = 2
 vim.opt.smartindent = true
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-
--- Bufferline
-vim.opt.termguicolors = true
-require("bufferline").setup{}
 
 -- LSP
 require('mason-lspconfig').setup({
@@ -20,7 +16,6 @@ require('mason-lspconfig').setup({
     'pylsp',
     'rust_analyzer',
     'clangd',
-    'jdtls',
     'bashls'
   }
 })
