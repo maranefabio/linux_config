@@ -1,59 +1,48 @@
--- Colorscheme
-vim.o.background = "dark"
-vim.cmd([[colorscheme carbonfox]])
-
--- Indentation
-vim.opt.tabstop = 2
-vim.opt.smartindent = true
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
-
--- LSP
-require('mason-lspconfig').setup({
-  ensure_installed = {
-    'lua_ls',
-    'ruff_lsp',
-    'pylsp',
-    'rust_analyzer',
-    'clangd',
-    'bashls'
-  }
+-- gruvbox
+require('gruvbox').setup({
+    italic={strings=false},
+    contrast='hard'
 })
 
-
-require('lspconfig').pylsp.setup{
-  settings = {
-    pylsp = {
-      plugins = {
-        pycodestyle = {
-          ignore = {'E501', 'E265', 'E605'},
-          maxLineLength = 100
-        }
-      }
-    }
-  }
+-- Mason
+require("mason").setup()
+require("mason-lspconfig").setup {
+    ensure_installed = { "lua_ls", "rust_analyzer", "pylsp", "ruff" },
 }
+
+
+-- LSP
+
+
+-- Colorscheme
+vim.o.background = "dark"
+vim.cmd([[colorscheme gruvbox]])
+
+-- Indentation
+vim.opt.tabstop = 4
+vim.opt.smartindent = true
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
 
 -- LuaLine
 require('lualine').setup({
-  options = {theme = 'gruvbox'}
+    options = {theme = 'gruvbox'}
 })
 
--- Which-Key
+--Which-Key
 local wk = require('which-key')
-wk.register({
-  ["<leader>f"] = {
-    name = "+Find",
-    f = { "<cmd>Telescope find_files<cr>", "Find File" },
-    g = { "<cmd>Telescope grep_string<cr>", "Find String" },
-  },
-  ["<leader>g"] = {
-    name = "+Git",
-    f = { "<cmd>Telescope git_files<cr>", "Git Files" },
-  },
-  ["<leader>e"] = {
-    name = "+Explore",
-    x = { "<cmd>Ex<cr>", "File Explorer" },
-    t = { "<cmd>Neotree toggle<cr>", "Toggle Neotree Window" }
-  },
+wk.add({
+    { "<leader>a", group = "Harpoon" },
+    { "<leader>e", group = "Explore" },
+    { "<leader>et", "<cmd>Neotree toggle<cr>", desc = "Toggle Neotree Window" },
+    { "<leader>ex", "<cmd>Ex<cr>", desc = "File Explorer" },
+    { "<leader>f", group = "Find" },
+    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File" },
+    { "<leader>fg", "<cmd>Telescope grep_string<cr>", desc = "Find String" },
+    { "<leader>g", group = "Git" },
+    { "<leader>gf", "<cmd>Telescope git_files<cr>", desc = "Git Files" },
 })
+
+
+
